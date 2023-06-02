@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

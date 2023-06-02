@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1>Home page guest</h1>
+        <h3>Section title</h3>
+        <p>section content</p>
     </section>
 @endsection
