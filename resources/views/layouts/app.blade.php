@@ -23,8 +23,8 @@
     <div id="app">
 
         <header>
-            @include('partials.appheader')
-            @includeWhen(Route::currentRouteName() === 'home', 'partials.apphero')
+            @include('partials.guest-header')
+            @includeWhen(Route::currentRouteName() === 'home', 'partials.guest-hero')
         </header>
 
 
