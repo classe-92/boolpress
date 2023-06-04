@@ -30,19 +30,19 @@
     <!-- Nav Item Menu -->
     <li class="nav-item">
         <a class="nav-link" href="" role="button">
-            <i class="fa-solid fa-fw fa-cog"></i>
+            <i class="fa-solid fa-note-sticky"></i>
             <span>Articles</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-solid fa-layer-group"></i>
             <span>Categories</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-solid fa-tags"></i>
             <span>Tags</span>
         </a>
     </li>
