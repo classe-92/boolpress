@@ -44,3 +44,8 @@ return [
 
     ]
 ];
+
+/*
+php artisan make:model Category -rcms --requests
+
+*/
