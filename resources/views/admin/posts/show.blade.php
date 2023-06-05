@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Show Post</h1>
+    <h1>{{ $post->title }}</h1>
+    <img src="{{ $post->image }}" alt="{{ $post->title }}">
+    <p>{{ $post->body }}</p>
 @endsection

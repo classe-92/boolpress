@@ -29,7 +29,7 @@
 
     <!-- Nav Item Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="" role="button">
+        <a class="nav-link" role="button" href="{{ route('admin.posts.index') }}">
             <i class="fa-solid fa-note-sticky"></i>
             <span>Articles</span>
         </a>
