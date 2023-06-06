@@ -11,7 +11,7 @@
                 </ul>
             </div>
             @endif --}}
-    <form action="{{ route('admin.posts.store') }}" method="POST">
+    <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title">Title</label>
@@ -22,9 +22,8 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="image">Image url</label>
-            <input type="url" class="form-control @error('image') is-invalid @enderror" name="image" id="image"
-                maxlength="255">
+            <label for="image">Image</label>
+            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image">
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

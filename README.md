@@ -38,7 +38,8 @@ composer require pacificdev/laravel_9_preset
 #installiamo il pacchetto 
 php artisan preset:ui bootstrap --auth
 
-
+#modifichiamo app/Provoders/RouteServiceProvider.php con la nostra rotta dove andare dopo il login
+public const HOME = '/admin';
 
 #lanciamo npm install
 npm install
@@ -215,10 +216,20 @@ Route::resource('items', ItemController::class);
 ```bash
 #create model + resource controller, migration e seeder
 
-php artisan make:model Nomemodel -rcms
+php artisan make:model Nomemodel -rcms --requests
 
 ```
-```
+```bash
+# Storage
+# in .env alla chiave FILESYSTEM_DISK
+FILESYSTEM_DISK=public
+
+# modificare config/filesystem.php
+ 'default' => env('FILESYSTEM_DISK', 'public'),
+
+# lanciare il comando per creare il simlink
+php artisan storage:link
+
 
 ```
 - **[Vehikl](https://vehikl.com/)**

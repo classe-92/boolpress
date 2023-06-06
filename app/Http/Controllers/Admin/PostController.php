@@ -8,6 +8,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Doctrine\DBAL\Schema\View;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,6 +44,11 @@ class PostController extends Controller
         $data = $request->validated();
         $slug = Str::slug($request->title, '-');
         $data['slug'] = $slug;
+        if ($request->hasFile('image')) {
+            $image_path = Storage::put('uploads', $request->image);
+            $data['image'] = asset('storage/' . $image_path);
+        }
+
         $post = Post::create($data);
         return redirect()->route('admin.posts.show', $post->slug);
     }
@@ -82,6 +88,13 @@ class PostController extends Controller
         $data = $request->validated();
         $slug = Str::slug($request->title, '-');
         $data['slug'] = $slug;
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $image_path = Storage::put('uploads', $request->image);
+            $data['image'] = asset('storage/' . $image_path);
+        }
         $post->update($data);
         return redirect()->route('admin.posts.show', $post->slug)->with('message', 'Il post è stato aggiornato');
     }
@@ -94,6 +107,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
         $post->delete();
         return redirect()->route('admin.posts.index')->with('message', "$post->title deleted successfully.");
     }
