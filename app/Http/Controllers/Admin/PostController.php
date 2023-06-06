@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Doctrine\DBAL\Schema\View;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -35,11 +36,15 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StorePostRequest  $request
-     * @return \Illuminate\Http\Response
+     *
      */
     public function store(StorePostRequest $request)
     {
-
+        $data = $request->validated();
+        $slug = Str::slug($request->title, '-');
+        $data['slug'] = $slug;
+        $post = Post::create($data);
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -74,7 +79,11 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $data = $request->validated();
+        $slug = Str::slug($request->title, '-');
+        $data['slug'] = $slug;
+        $post->update($data);
+        return redirect()->route('admin.posts.show', $post->slug)->with('message', 'Il post è stato aggiornato');
     }
 
     /**
