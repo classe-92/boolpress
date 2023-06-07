@@ -231,6 +231,11 @@ FILESYSTEM_DISK=public
 php artisan storage:link
 
 
+# scaricare nella cartella views i template per la paginazione e gli errori per customizzarli
+php artisan vendor:publish --tag=laravel-errors
+
+php artisan vendor:publish --tag=laravel-pagination
+
 ```
 - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
