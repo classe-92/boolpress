@@ -219,6 +219,7 @@ Route::resource('items', ItemController::class);
 php artisan make:model Nomemodel -rcms --requests
 
 ```
+## File Storage
 ```bash
 # Storage
 # in .env alla chiave FILESYSTEM_DISK
@@ -230,13 +231,17 @@ FILESYSTEM_DISK=public
 # lanciare il comando per creare il simlink
 php artisan storage:link
 
+```
 
+## Customize pagination and errors page
+```bash
 # scaricare nella cartella views i template per la paginazione e gli errori per customizzarli
 php artisan vendor:publish --tag=laravel-errors
 
 php artisan vendor:publish --tag=laravel-pagination
 
 ```
+## Generate unique slug
 
 ```php
 # function to generate unique slug
