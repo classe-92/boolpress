@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Doctrine\DBAL\Schema\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -19,7 +21,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(3);
+        $user = Auth::user();
+        if ($user->is_admin) {
+            $posts = Post::paginate(3);
+        } else {
+            $posts = Post::where('user_id', $user->id)->paginate(3);
+        }
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -30,7 +37,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -44,6 +52,8 @@ class PostController extends Controller
         $data = $request->validated();
         $slug = Str::slug($request->title, '-');
         $data['slug'] = $slug;
+        //$currentUser = Auth::user();
+        $data['user_id'] = Auth::id();
         if ($request->hasFile('image')) {
             $image_path = Storage::put('uploads', $request->image);
             $data['image'] = asset('storage/' . $image_path);
@@ -62,6 +72,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (!Auth::user()->is_admin && $post->user_id !== Auth::id()) {
+            abort(403);
+        }
         return view('admin.posts.show', compact('post'));
     }
 
@@ -73,7 +86,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        if (!Auth::user()->is_admin && $post->user_id !== Auth::id()) {
+            abort(403);
+        }
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**

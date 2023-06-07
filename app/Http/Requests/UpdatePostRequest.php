@@ -32,7 +32,8 @@ class UpdatePostRequest extends FormRequest
                 'min:3'
             ],
             'image' => 'nullable|max:255',
-            'body' => 'nullable'
+            'body' => 'nullable',
+            'category_id' => 'nullable|exists:categories,id'
         ];
     }
 
