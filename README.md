@@ -237,6 +237,26 @@ php artisan vendor:publish --tag=laravel-errors
 php artisan vendor:publish --tag=laravel-pagination
 
 ```
+
+```php
+# function to generate unique slug
+
+private function getSlug($title)
+    {
+        $slug = Str::of($title)->slug("-");
+        $count = 1;
+
+        // Prendi il primo post il cui slug è uguale a $slug
+        // se è presente allora genero un nuovo slug aggiungendo -$count
+        while( Post::where("slug", $slug)->first() ) {
+            $slug = Str::of($title)->slug("-") . "-{$count}";
+            $count++;
+        }
+
+        return $slug;
+    }
+
+```
 - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
 - **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
