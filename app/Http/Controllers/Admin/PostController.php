@@ -108,7 +108,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         if ($post->image) {
-            Storage::delete($post->image);
+            $datogliere = "http://127.0.0.1:8000/storage/";
+            $imagetoremove = str_replace($datogliere, '', $post->image);
+            //dd($imagetoremove);
+            Storage::delete($imagetoremove);
         }
         $post->delete();
         return redirect()->route('admin.posts.index')->with('message', "$post->title deleted successfully.");
