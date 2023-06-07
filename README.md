@@ -146,9 +146,9 @@ php artisan migrate
 #creo model per la tabella generata
 php artisan make:model Nometabellasingolare
 
-#preparo il seeder
+#preparo il seeder didsolito es. PostSeeder
 
-php artisan make:seeder NomeTableSeeder
+php artisan make:seeder NomeSeeder 
 
 #apro il seeder e dentro c'è la funzione run()
 				$array_pasta = config('pasta');
