@@ -1,10 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Index Post</h1>
-    <div class="text-end">
-        <a class="btn btn-success" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Index Post</h1>
+
+        <a class="btn btn-success text-white" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
+
     </div>
+
     @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session()->get('message') }}

@@ -25,6 +25,7 @@ class PostController extends Controller
         $user = Auth::user();
         if ($user->is_admin) {
             $posts = Post::paginate(3);
+
         } else {
             $posts = Post::where('user_id', $user->id)->paginate(3);
         }
