@@ -21,3 +21,8 @@ $fa-font-path: "../fonts/webfonts" !default;
 @import "./partials/login.scss";
 @import "./partials/error.scss";
 @import "./partials/footer.scss";
+
+a{
+    text-decoration: none;
+    color: white;
+}

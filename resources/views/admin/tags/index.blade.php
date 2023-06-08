@@ -12,18 +12,18 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($tags as $tag)
+            @foreach ($tags as $tag)
                 <tr>
-                    <th scope="row">{{ $category->id }}</th>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->created_at }}</td>
+                    <th scope="row">{{ $tag->id }}</th>
+                    <td>{{ $tag->name }}</td>
+                    <td>{{ $tag->created_at }}</td>
                     <td>
-                        <a href="{{ route('admin.categories.show', $category->slug) }}">Show</a>
-                        <a href="">Edit</a>
-                        <a href="">Delete</a>
+                        <a class="text-black" href="{{ route('admin.tags.show', $tag->slug) }}">Show</a>
+                        <a class="text-black" href="#">Edit</a>
+                        <a class="text-black" href="#">Delete</a>
                     </td>
                 </tr>
-            @endforeach --}}
+            @endforeach
 
         </tbody>
     </table>
