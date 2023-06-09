@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
 
 require __DIR__ . '/auth.php';
 
-
+//la rotta di fallback deve esere sempre l'ultima
 Route::fallback(function () {
     return redirect(route('home'));
 });
