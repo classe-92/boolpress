@@ -206,19 +206,6 @@ php artisan migrate --seed
 
 ```
 
-## Laravel Resource
-```php
-#in routes web.php
-Route::resource('items', ItemController::class);
-
-```
-
-```bash
-#create model + resource controller, migration e seeder
-
-php artisan make:model Nomemodel -rcms --requests
-
-```
 ## File Storage
 ```bash
 # Storage
@@ -230,6 +217,20 @@ FILESYSTEM_DISK=public
 
 # lanciare il comando per creare il simlink
 php artisan storage:link
+
+```
+
+## Laravel Resource
+```php
+#in routes web.php
+Route::resource('items', ItemController::class);
+
+```
+
+```bash
+#create model + resource controller, migration e seeder
+
+php artisan make:model Nomemodel -rcms --requests
 
 ```
 
